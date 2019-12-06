@@ -1,0 +1,68 @@
+/*
+ Theme Name:   Ericson Scorsim - Twenty Twenty Child
+ Description:  Tema para Ericson Scorsim baseado no tema Twenty Twenty
+ Author:       Sarah Gonçalves
+ Author URI:   http://sarahgoncalves.netlify.com
+ Template:     twentytwenty
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  twentytwentychild
+*/
+
+.header-titles-wrapper {
+    max-width: inherit;
+    width: 100%;
+}
+
+/*Home*/
+.home {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.posts {
+    display: flex;
+}
+
+.posts_box {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+.posts_leiamais {
+    border: 1px solid black;
+    padding: .5em 2em;
+    margin: 2em;
+}
+
+/*Medias Queries*/
+
+/* Header */
+
+@media ( min-width: 1000px ) {
+    
+    /*Menu Button and Modal*/
+	.mobile-nav-toggle {
+		display: flex !important;
+    }
+    .menu-modal {
+        justify-content: unset;
+    }
+    .menu-modal-inner {
+        transform: translateX(-50vw);
+    }
+    .menu-modal.active .menu-modal-inner {
+        transform:  translateX(0);
+    }
+
+    /*Header Titles*/
+    .header-titles {
+        flex-direction: column;
+        align-items: center;
+    }
+}
