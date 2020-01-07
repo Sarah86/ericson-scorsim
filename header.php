@@ -37,9 +37,8 @@
             <button class="toggle nav-toggle mobile-nav-toggle" data-toggle-target=".menu-modal"  data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".close-nav-toggle">
 						<span class="toggle-inner">
 							<span class="toggle-icon">
-								<?php twentytwenty_the_theme_svg( 'ellipsis' ); ?>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
 							</span>
-							<span class="toggle-text"><?php _e( 'Menu', 'twentytwenty' ); ?></span>
 						</span>
                     </button><!-- .nav-toggle -->
 

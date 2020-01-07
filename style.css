@@ -10,39 +10,362 @@
  Text Domain:  twentytwentychild
 */
 
+@font-face {
+    font-family: "Didot Headline";
+    src: url("/wp-content/themes/ericson_scorsim/fonts/DidotLTPro-Headline.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Didot Regular";
+    src: url("/wp-content/themes/ericson_scorsim/fonts/GFSDidot-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Gotham";
+    src: url("/wp-content/themes/ericson_scorsim/fonts/Gotham Medium.otf") format("opentype");
+}
+
+/*
+*   Tipologia
+*   Header
+*   Home
+*   Medias Queries
+*       1000px
+*/
+
+/*Paleta*/
+
+:root {
+    --branco: #FFFFFF;
+    --cinza: #C2C3C5;
+    --cinza-escuro: #929497;
+    --laranja:#EE4036;
+
+    --borda-cinza-clara: 1px solid rgba(0, 0, 0, 0.1);
+
+    --letter-spacing-1: .7px;
+}
+
+/*Buttons*/
+.button-primary {
+    border: 1px solid black;
+    padding: .5em 2em;
+    margin: 2em;
+    text-transform: uppercase;
+    color: black;
+}
+
+/*Tipologia*/
+
+a {
+    text-decoration: none;
+    color: var(--laranja);
+}
+
+h2 {
+    font-family: "Didot Headline";
+    font-size: 1em;
+}
+
+.title-with-top-border {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 2em;
+}
+
+.title-with-top-border::before {
+    content: "";
+    background-color: black;
+    height: .1em;
+    width: 2.5em;
+}
+
+body {
+    background-color: var(--cinza);
+}
+
+/*Header*/
+
 .header-titles-wrapper {
     max-width: inherit;
     width: 100%;
+    padding: 0;
+}
+
+.header-titles {
+    width: 8em;
+}
+
+.site-description {
+    display: block;
+}
+
+.site-logo img {
+    max-height: 20rem;
+}
+
+.header-inner {
+    padding: 1rem 0;
+}
+
+.header-titles-wrapper {
+    padding: 6rem 0;
+}
+
+.nav-toggle {
+    position: relative;
+    float: right;
+    width: auto;
+    padding: 0 1rem !important;
+}
+
+.nav-toggle .toggle-icon,
+.nav-toggle .toggle-inner {
+    height: 2em;
+    margin: auto;
+}
+
+.nav-toggle .toggle-icon svg {
+    color: var(--cinza-escuro);
+    height: 100%;
+}
+
+.search-toggle {
+    right: 0;
+    left: initial;
+}
+
+/*Main*/
+#site-content {
+    background-color: var(--branco);
+    padding: .7em;
 }
 
 /*Home*/
 .home {
-    width: 80%;
+    max-width: 1050px;
     margin: 0 auto;
 }
 
 .posts {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .posts_box {
-    border: 1px solid black;
+    display: flex;
+    flex: calc(100/3);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    min-width: 15em;
+}
+
+.posts_titulo {
+    color: var(--cinza-escuro);
+    margin: 0 0 2rem 0;
+    font-size: 1.1em;
+    font-weight: normal;
+    letter-spacing: var(--letter-spacing-1);
+    line-height: 1.4em;
+}
+
+.posts_thumbnail {
+    width: 275px;
+    height: 375px
+}
+
+.posts_thumbnail img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.posts_modal {
+    background-color: var(--cinza);
+    display: none;
+    opacity: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    transition: opacity 0.25s ease-in, left 0s 0.25s, right 0s 0.25s;
+    z-index: 99;
+}
+
+
+.posts_modal.active {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.25s ease-out;
+}
+
+.posts_button-close {
+    background-color: transparent !important;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.newsletter {
+    background-color: grey;
+    display: flex;
+    padding: 1.5em;
+    margin: 1em 0;
+    flex-wrap: wrap;
+}
+
+.newsletter_title {
+    font-size: 1.3em;
+    margin: auto;
+    min-width: 10em;
+}
+
+.newsletter_input-group {
+    display: flex;
+}
+
+.newsletter_input-group-field[type="email"],
+.newsletter_button {
+    margin: .5em;
+    width: 50%;
+    padding: .5em;
+}
+
+.atuacao__title,
+.perfil_title {
+    margin: 0 0 1em 0;
+}
+
+.perfil_image {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    margin-bottom: 1em;
+}
+
+.perfil_image img {
+    border-radius: 100%;
+    margin: auto;
+    width: 85px;
+    z-index: 1;
+}
+
+.ball-shadow {
+    background: radial-gradient(50% 50%, #000 -53%, #fff 100%);
+    height: 1.5em;
+    width: 85px;
+    margin-top: -15px;
+    z-index: 0;
+  }
+
+.atuacao_box {
+    position: relative;
+}
+
+.atuacao_content {
+    border: 1px solid black;
+    margin: 0 3em;
     padding: 1em;
 }
 
-.posts_leiamais {
+.atuacao_arrows {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.atuacao_arrow-right,
+.atuacao_arrow-left {
     border: 1px solid black;
-    padding: .5em 2em;
-    margin: 2em;
+    border-radius: 100%;
+    padding: 0.2em .5em;
+}
+
+.atuacaoeperfil {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.atuacaoeperfil_box {
+    flex: calc(100/2);
+    padding: 1.5em;
+    border: var(--borda-cinza-clara);
+    text-align: center;
+    min-width: 15em;
+}
+
+.maislidas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.maislidas_noticias {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.maislidas_noticia {
+    flex: calc(100/3);
+    border: var(--borda-cinza-clara);
+    padding: 1em;
+    margin: 3px;
+    min-width: 10em;
+}
+
+.divider {
+    display: block;
+    margin-bottom: 1em;
+    margin-top: .5em;
+    width: 3em;
+    height: 3px;
+    background-color: black;
+}
+
+/*Footer-Home*/
+
+#site-footer {
+    margin-top: 0 !important;
+}
+
+.footer-home{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.footer-home_logo {
+    width: 100px;
+}
+
+
+.footer-home_social {
+    display: flex;
+}
+
+.footer-home_social div {
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.footer-nav-widgets-wrapper, #site-footer {
+    background-color: transparent;
 }
 
 /*Medias Queries*/
-
-/* Header */
 
 @media ( min-width: 1000px ) {
     
