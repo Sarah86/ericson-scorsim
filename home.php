@@ -67,23 +67,37 @@ get_header();
 
     ?>
 
-    <div class="home">
-        <div class="posts">
+    <div class="main_home">
+        <div class="info desktop-only" id="info-container">
+            <?php
+                // Site title or logo.
+                twentytwenty_site_logo();
+
+            ?>
+            <address class="footer-home_contato">
+					<strong><?php echo get_theme_mod( 'cidade_pais', '' ); ?></strong><br>
+					<?php echo get_theme_mod( 'endereco', '' ); ?><br>
+					<?php echo get_theme_mod( 'fone', '' ); ?><br>
+					<a href="mailto:<?php echo get_theme_mod( 'email', '' ); ?>"><?php echo get_theme_mod( 'email', '' ); ?></a>
+				</address>
+        </div>
+        <div class="posts" id="posts-container">
+            <div class="posts_box"></div>
 
             <?php
             // Novidades
             $posts = new WP_Query(array(
-                'category' => pll_get_term(19),
-                'posts_per_page' => 3,
+                'category' => pll_get_term(19) && pll_get_term(26) &&  pll_get_term(28),
+                'posts_per_page' => 6,
             ));
             ?>
 
             <?php if ($posts->have_posts()) : ?>
                 <?php while ($posts->have_posts()) : $posts->the_post(); ?>
 
-                    <div class="posts_box">
-                        <div role="button" class="posts_button-open" data-toggle-target=".posts_modal-<?php the_ID();?>" data-toggle-body-class="showing-posts-modal" aria-expanded="false" data-set-focus=".posts_button-close">
-                        <h2 class="posts_titulo"><?php the_title(); ?></h2>
+                    <div class="posts_box"  to="<?php esc_url(the_permalink()) ?>">
+                        <div role="button" class="posts_button-open">
+                        <?php the_title('<h2 class="posts_titulo">', '</h2>'); ?>
                                     <?php if (has_post_thumbnail()) : ?> 
                                         <div class="posts_thumbnail">
                                             <?php the_post_thumbnail('medium_large', '') ?>
@@ -91,7 +105,7 @@ get_header();
                                     <?php endif; ?>
                         </div>
                         <div class="posts_modal posts_modal-<?php the_ID();?>">
-                            <button class="posts_button-close" data-toggle-target=".posts_modal-<?php the_ID();?>" data-toggle-body-class="showing-posts-modal" aria-expanded="true" data-set-focus=".posts_modal-<?php the_ID();?>">
+                            <button class="posts_button-close">
                                 <svg class="svg-icon" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><polygon fill="" fill-rule="evenodd" points="6.852 7.649 .399 1.195 1.445 .149 7.899 6.602 14.352 .149 15.399 1.195 8.945 7.649 15.399 14.102 14.352 15.149 7.899 8.695 1.445 15.149 .399 14.102"></polygon></svg>				
                             </button>
                             <div class="posts_content">
@@ -109,18 +123,15 @@ get_header();
                 <p><?php __('No News'); ?></p>
             <?php endif; ?>
 
+            <div class="posts_box">
+                <div class=" posts_vejamais">
+                    <img src="/themes/ericson_scorsim/assets/images/logo-branca.svg"/>
+                    <h2>
+                        <?php _e('ver todas as novidades ', 'twentytwentychild') ?>
+                    </h2>
+                </div>
+            </div>
 
-        </div>
-
-        <div>
-            <h2>
-                <?php _e('ver todas as', 'twentytwentychild') ?>
-                <?php
-                foreach (
-                    (get_the_category()) as $category) {
-                    echo $category->cat_name . ' ';
-                } ?>
-            </h2>
         </div>
 
         <?php get_template_part('template-parts/pagination'); ?>

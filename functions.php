@@ -1,6 +1,7 @@
 <?php
 
 // Child Theme Styles
+
 function my_theme_enqueue_styles()
 {
 
@@ -16,6 +17,12 @@ function my_theme_enqueue_styles()
 }
 
 add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
+
+//Scripts
+function ericson_scorsim_scripts() {
+    wp_enqueue_script( 'main',  get_stylesheet_directory_uri() . '/main.js', array(), '1.0.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'ericson_scorsim_scripts' );
 
 // DIY Popular Posts @ https://digwp.com/2016/03/diy-popular-posts/
 

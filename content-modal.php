@@ -17,11 +17,7 @@
 
 	<?php
 
-	get_template_part( 'template-parts/entry-header' );
-
-	if ( ! is_search() ) {
-		get_template_part( 'template-parts/featured-image' );
-	}
+	get_template_part( 'template-parts/entry-header', 'modal' );
 
 	?>
 
@@ -33,7 +29,9 @@
 			if ( is_search() || ! is_singular() && 'summary' === get_theme_mod( 'blog_content', 'full' ) ) {
 				the_excerpt();
 			} else {
+				get_template_part('template-parts/share');
 				the_content( __( 'Continue reading', 'twentytwenty' ) );
+				get_template_part( 'template-parts/featured-image', 'modal' );
 			}
 			?>
 
