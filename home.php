@@ -70,20 +70,23 @@ get_header();
     <div class="main_home">
         <div class="info desktop-only" id="info-container">
             <?php
-                // Site title or logo.
-                twentytwenty_site_logo();
+            // Site title or logo.
+            twentytwenty_site_logo();
 
             ?>
-            <address class="footer-home_contato">
-					<strong><?php echo get_theme_mod( 'cidade_pais', '' ); ?></strong><br>
-					<?php echo get_theme_mod( 'endereco', '' ); ?><br>
-					<?php echo get_theme_mod( 'fone', '' ); ?><br>
-					<a href="mailto:<?php echo get_theme_mod( 'email', '' ); ?>"><?php echo get_theme_mod( 'email', '' ); ?></a>
-				</address>
+            <div class="footer-home">
+                <ul class="footer-home_language">
+                    <?php pll_the_languages(); ?>
+                </ul>
+                <address class="footer-home_contato">
+                    <strong><?php echo get_theme_mod('cidade_pais', ''); ?></strong><br>
+                    <?php echo get_theme_mod('endereco', ''); ?>
+                    <?php echo get_theme_mod('fone', ''); ?><br>
+                    <a href="mailto:<?php echo get_theme_mod('email', ''); ?>"><?php echo get_theme_mod('email', ''); ?></a>
+                </address>
+            </div>
         </div>
         <div class="posts" id="posts-container">
-            <div class="posts_box"></div>
-
             <?php
             // Novidades
             $posts = new WP_Query(array(
@@ -95,23 +98,25 @@ get_header();
             <?php if ($posts->have_posts()) : ?>
                 <?php while ($posts->have_posts()) : $posts->the_post(); ?>
 
-                    <div class="posts_box"  to="<?php esc_url(the_permalink()) ?>">
+                    <div class="posts_box" to="<?php esc_url(the_permalink()) ?>">
                         <div role="button" class="posts_button-open">
-                        <?php the_title('<h2 class="posts_titulo">', '</h2>'); ?>
-                                    <?php if (has_post_thumbnail()) : ?> 
-                                        <div class="posts_thumbnail">
-                                            <?php the_post_thumbnail('medium_large', '') ?>
-                                        </div>
-                                    <?php endif; ?>
+                            <?php the_title('<h2 class="posts_titulo">', '</h2>'); ?>
+                            <?php if (has_post_thumbnail()) : ?>
+                                <div class="posts_thumbnail">
+                                    <?php the_post_thumbnail('medium_large', '') ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                        <div class="posts_modal posts_modal-<?php the_ID();?>">
+                        <div class="posts_modal posts_modal-<?php the_ID(); ?>">
                             <button class="posts_button-close">
-                                <svg class="svg-icon" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><polygon fill="" fill-rule="evenodd" points="6.852 7.649 .399 1.195 1.445 .149 7.899 6.602 14.352 .149 15.399 1.195 8.945 7.649 15.399 14.102 14.352 15.149 7.899 8.695 1.445 15.149 .399 14.102"></polygon></svg>				
+                                <svg class="svg-icon" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                    <polygon fill="" fill-rule="evenodd" points="6.852 7.649 .399 1.195 1.445 .149 7.899 6.602 14.352 .149 15.399 1.195 8.945 7.649 15.399 14.102 14.352 15.149 7.899 8.695 1.445 15.149 .399 14.102"></polygon>
+                                </svg>
                             </button>
                             <div class="posts_content">
-                           
-                                    <?php get_template_part( 'content',  'modal' ) ?>
-                         
+
+                                <?php get_template_part('content',  'modal') ?>
+
                             </div>
                         </div>
                     </div>
@@ -125,8 +130,8 @@ get_header();
 
             <div class="posts_box">
                 <div class=" posts_vejamais">
-                    <img src="/themes/ericson_scorsim/assets/images/logo-branca.svg"/>
-                    <h2>
+                    <img class="posts_vejamais_logo" src="/wp-content/uploads/2020/01/logo-branca.svg" />
+                    <h2 class="posts_vejamais_titulo">
                         <?php _e('ver todas as novidades ', 'twentytwentychild') ?>
                     </h2>
                 </div>

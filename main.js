@@ -11,12 +11,9 @@ const ChangeUrl = (title, url) => {
         Url: url 
       };
       
-    typeof history.pushState != "undefined" ?
-    (   
+    if (history.pushState != "undefined") {
         history.pushState(obj, obj.Title, obj.Url)
-    ) : (
-        alert("Browser does not support HTML5.")
-    );
+    }
 }
 
 //Change opacity when scroll the content in homepage
