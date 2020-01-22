@@ -68,29 +68,12 @@ get_header();
     ?>
 
     <div class="main_home">
-        <div class="info desktop-only" id="info-container">
-            <?php
-            // Site title or logo.
-            twentytwenty_site_logo();
-
-            ?>
-            <div class="footer-home">
-                <ul class="footer-home_language">
-                    <?php pll_the_languages(); ?>
-                </ul>
-                <address class="footer-home_contato">
-                    <strong><?php echo get_theme_mod('cidade_pais', ''); ?></strong><br>
-                    <?php echo get_theme_mod('endereco', ''); ?>
-                    <?php echo get_theme_mod('fone', ''); ?><br>
-                    <a href="mailto:<?php echo get_theme_mod('email', ''); ?>"><?php echo get_theme_mod('email', ''); ?></a>
-                </address>
-            </div>
-        </div>
+        <?php get_template_part( 'template-parts/sidebar' ) ?>
         <div class="posts" id="posts-container">
             <?php
             // Novidades
             $posts = new WP_Query(array(
-                'category' => pll_get_term(19) && pll_get_term(26) &&  pll_get_term(28),
+                'category' => pll_get_term(19) && pll_get_term(26) && pll_get_term(28),
                 'posts_per_page' => 6,
             ));
             ?>
@@ -100,7 +83,12 @@ get_header();
 
                     <div class="posts_box" to="<?php esc_url(the_permalink()) ?>">
                         <div role="button" class="posts_button-open">
-                            <?php the_title('<h2 class="posts_titulo">', '</h2>'); ?>
+                        <h2 class="posts_titulo">
+                            <?php 
+                                $text = get_the_title( $posts->post );
+                                echo wp_trim_words( $text, 15, '..' );
+                            ?>
+                        </h2>
                             <?php if (has_post_thumbnail()) : ?>
                                 <div class="posts_thumbnail">
                                     <?php the_post_thumbnail('medium_large', '') ?>

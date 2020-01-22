@@ -30,8 +30,8 @@ const changeOpacityWhenScroll = () => {
 const pressingDownScrollToRight = () => {
     if (homepage) {
         document.addEventListener('keydown', (event) => {
-            (event.key == "ArrowDown" || event.key == "ArrowRight" ) ? postsContainer.scrollBy(100, 0) 
-            : (event.key == "ArrowUp" || event.key == "ArrowLeft" ) ? postsContainer.scrollBy(-100, 0) 
+            (event.key == "ArrowDown" || event.key == "ArrowRight" ) ? postsContainer.scrollBy(50, 0) 
+            : (event.key == "ArrowUp" || event.key == "ArrowLeft" ) ? postsContainer.scrollBy(-50, 0) 
             : event
         });
     }    

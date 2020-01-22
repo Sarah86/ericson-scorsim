@@ -14,9 +14,16 @@ function my_theme_enqueue_styles()
         array($parent_style),
         wp_get_theme()->get('Version')
     );
+    wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/fonts/fontawesome-free/css/all.css');
 }
 
 add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
+
+/* Remove inline styles*/
+add_action( 'wp_enqueue_scripts', function() {
+	$styles = wp_styles();
+	$styles->add_data( 'twentytwenty-style', 'after', array() );
+}, 20 ); 
 
 //Scripts
 function ericson_scorsim_scripts()
