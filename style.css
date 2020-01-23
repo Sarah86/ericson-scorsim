@@ -502,7 +502,7 @@ body *::-webkit-scrollbar-thumb {
   line-height: 1.1em;
 }
 
-.posts_vejamais_titulo:hover {
+.posts_vejamais:hover .posts_vejamais_titulo {
   color: var(--laranja);
 }
 
@@ -628,6 +628,12 @@ body *::-webkit-scrollbar-thumb {
   display: flex;
   -webkit-box-pack: end;
   justify-content: flex-end;
+}
+
+/*Paginas - Content*/
+
+.singular .entry-header {
+  background-color: transparent;
 }
 
 .newsletter {
@@ -1053,6 +1059,14 @@ h2.entry-title {
   .posts_vejamais {
     height: var(--post-max-height);
   }
+
+   /*Paginas*/
+
+   .main-singular_content {
+    overflow: auto;
+  }
+
+
 
   /*Footer*/
   footer {

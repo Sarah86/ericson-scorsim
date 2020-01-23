@@ -37,9 +37,19 @@ const pressingDownScrollToRight = (element) => {
     }    
 }
 
-//Push history back: 
-const pushHistoryBack = () => {
-    window.history.back();
+
+//Add active class to the modal when press the button
+const addOpeningClass = () => {
+    postBoxAll.forEach(box => {
+        box.addEventListener('click', () => {
+            box.classList.remove('animated', 'fadeIn', 'delay-1s');
+            box.querySelector('.posts_modal').classList.add('animated', 'zoomIn', 'fast', 'active');
+            box.querySelector('.entry-content').classList.add('animated', 'fadeIn', 'delay-1s');
+            setTimeout(() => {
+             box.querySelector('.posts_modal').classList.remove('fast');
+            }, 500);
+        })
+    })
 }
 
 //Inject the URL to the address bar
@@ -53,23 +63,19 @@ const injectUrl = () => {
     })
 }
 
+//Push history back: 
+const pushHistoryBack = () => {
+    window.history.back();
+}
+
 //Remove class active from the modal with timeout
 const removeActiveClass = () => {
     const activePostModal = document.querySelector('.posts_modal.active');
-    activePostModal.classList.add('animated', 'zoomOut');
+    activePostModal.classList.add('animated', 'zoomOut', 'faster');
     setTimeout(() => {
-        activePostModal.classList.remove('animated', 'zoomOut', 'zoomIn', 'active');
+        activePostModal.classList.remove('animated', 'zoomOut', 'faster', 'zoomIn', 'active');
+        activePostModal.querySelector('.entry-content').classList.remove('animated', 'fadeIn', 'delay-1s');
     }, 500);
-}
-
-//Add active class to the modal when press the button
-const addOpeningClass = () => {
-    postBoxAll.forEach(box => {
-        box.addEventListener('click', () => {
-            box.querySelector('.posts_modal').classList.add('animated', 'zoomIn', 'faster', 'active');
-            box.classList.remove('animated', 'fadeIn', 'delay-2s');
-        })
-    })
 }
 
 // Close the modal when hit the back button
