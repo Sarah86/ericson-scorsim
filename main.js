@@ -42,8 +42,8 @@ const pressingDownScrollToRight = (element) => {
 const addOpeningClass = () => {
     postBoxAll.forEach(box => {
         box.addEventListener('click', () => {
-            box.classList.remove('animated', 'fadeIn', 'delay-1s');
-            box.querySelector('.posts_modal').classList.add('animated', 'zoomIn', 'fast', 'active');
+            box.querySelector('.posts_modal').classList.add('active', 'animated', 'zoomIn', 'fast');
+            box.classList.remove('animated', 'fadeIn', 'delay-2s');
             box.querySelector('.entry-content').classList.add('animated', 'fadeIn', 'delay-1s');
             setTimeout(() => {
              box.querySelector('.posts_modal').classList.remove('fast');
