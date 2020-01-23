@@ -81,7 +81,7 @@ get_header();
             <?php if ($posts->have_posts()) : ?>
                 <?php while ($posts->have_posts()) : $posts->the_post(); ?>
 
-                    <div class="posts_box" to="<?php esc_url(the_permalink()) ?>">
+                    <div class="posts_box animated fadeIn delay-1s" to="<?php esc_url(the_permalink()) ?>">
                         <div role="button" class="posts_button-open">
                         <h2 class="posts_titulo">
                             <?php 

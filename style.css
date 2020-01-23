@@ -529,7 +529,7 @@ body *::-webkit-scrollbar-thumb {
   width: 300px;
   z-index: -1;
   opacity: 0;
-  -webkit-transform: scale(0);
+  /* -webkit-transform: scale(0);
   transform: scale(0);
   -webkit-transition-property: opacity, width, height, -webkit-transform;
   transition-property: opacity, width, height, -webkit-transform;
@@ -540,7 +540,7 @@ body *::-webkit-scrollbar-thumb {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
   -webkit-transition-delay: 0s, 0s, 0s, 0s;
-  transition-delay: 0s, 0s, 0s, 0s;
+  transition-delay: 0s, 0s, 0s, 0s; */
 }
 
 .posts_modal.active {
@@ -558,8 +558,8 @@ body *::-webkit-scrollbar-thumb {
   width: 100%;
   z-index: 100;
   opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
+  /* -webkit-transform: scale(1);
+  transform: scale(1); */
 }
 
 .posts_modal.closing {

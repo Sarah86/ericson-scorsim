@@ -17,21 +17,21 @@ const ChangeUrl = (title, url) => {
 }
 
 //Change opacity when scroll the content in homepage
-const changeOpacityWhenScroll = () => {
-    postsContainer.addEventListener('scroll', () => {
-        const scrollPositionX = postsContainer.scrollLeft;
+const changeOpacityWhenScroll = (opacityElement, scrolledElement) => {
+    scrolledElement.addEventListener('scroll', () => {
+        const scrollPositionX = scrolledElement.scrollLeft;
         const changedOpacityRelativeToX = "opacity:" + (1 - scrollPositionX/150);
   
-        infoContainer.setAttribute("style", changedOpacityRelativeToX);
+        opacityElement.setAttribute("style", changedOpacityRelativeToX);
     })
 }
 
 //Change buttons and scroll behavior for homepage
-const pressingDownScrollToRight = () => {
+const pressingDownScrollToRight = (element) => {
     if (homepage) {
         document.addEventListener('keydown', (event) => {
-            (event.key == "ArrowDown" || event.key == "ArrowRight" ) ? postsContainer.scrollBy(50, 0) 
-            : (event.key == "ArrowUp" || event.key == "ArrowLeft" ) ? postsContainer.scrollBy(-50, 0) 
+            (event.key == "ArrowDown" || event.key == "ArrowRight" ) ? element.scrollBy(50, 0) 
+            : (event.key == "ArrowUp" || event.key == "ArrowLeft" ) ? element.scrollBy(-50, 0) 
             : event
         });
     }    
@@ -40,16 +40,6 @@ const pressingDownScrollToRight = () => {
 //Push history back: 
 const pushHistoryBack = () => {
     window.history.back();
-}
-
-//Remove class active from the modal with timeout
-const removeActiveClass = () => {
-    const activePostModal = document.querySelector('.posts_modal.active');
-    activePostModal.classList.add('closing');
-    setTimeout(() => {
-        activePostModal.classList.remove('closing');
-        activePostModal.classList.remove('active');
-    }, 500);
 }
 
 //Inject the URL to the address bar
@@ -63,11 +53,21 @@ const injectUrl = () => {
     })
 }
 
+//Remove class active from the modal with timeout
+const removeActiveClass = () => {
+    const activePostModal = document.querySelector('.posts_modal.active');
+    activePostModal.classList.add('animated', 'zoomOut');
+    setTimeout(() => {
+        activePostModal.classList.remove('animated', 'zoomOut', 'zoomIn', 'active');
+    }, 500);
+}
+
 //Add active class to the modal when press the button
 const addOpeningClass = () => {
     postBoxAll.forEach(box => {
         box.addEventListener('click', () => {
-            box.querySelector('.posts_modal').classList.add('active');
+            box.querySelector('.posts_modal').classList.add('animated', 'zoomIn', 'faster', 'active');
+            box.classList.remove('animated', 'fadeIn', 'delay-2s');
         })
     })
 }
@@ -93,8 +93,8 @@ const closeModalWhenPressBack = () => {
 (function() {
     addOpeningClass();
     injectUrl();
-    pressingDownScrollToRight();
-    changeOpacityWhenScroll();
+    pressingDownScrollToRight(postsContainer);
+    changeOpacityWhenScroll(infoContainer, postsContainer);
     closeModalWhenPressBack();
     pressCloseHistoryBack();
  })();
