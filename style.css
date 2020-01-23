@@ -614,6 +614,14 @@ body *::-webkit-scrollbar-thumb {
   transition: 0.5s;
 }
 
+.posts_thumbnail {
+  transition: .5s;
+}
+
+.posts_button-open:hover .posts_thumbnail {
+  transform: scale(1.1);
+}
+
 .posts_button-close {
   background-color: transparent !important;
   display: -webkit-box;
