@@ -1066,6 +1066,17 @@ h2.entry-title {
     overflow: auto;
   }
 
+  /*Novidades*/
+
+  .posts-novidades {
+    padding-left: 0;
+    height: var(--post-max-height);
+  }
+
+  .posts-novidades .posts_box {
+    flex: unset;
+  }
+
 
 
   /*Footer*/

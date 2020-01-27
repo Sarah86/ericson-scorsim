@@ -23,7 +23,7 @@ get_header();
             <?php if ($posts->have_posts()) : ?>
                 <?php while ($posts->have_posts()) : $posts->the_post(); ?>
 
-                    <div class="posts_box animated fadeIn delay-1s" to="<?php esc_url(the_permalink()) ?>">
+                    <div class="posts_box posts_box-modal animated fadeIn delay-1s" to="<?php esc_url(the_permalink()) ?>">
                         <div role="button" class="posts_button-open">
                             <h2 class="posts_titulo">
                                 <?php
@@ -54,7 +54,7 @@ get_header();
                 <p><?php __('No News'); ?></p>
             <?php endif; ?>
 
-            <div class="posts_box" to="/novidades">
+            <div class="posts_box posts_box-modal" to="/novidades">
                 <div role="button" class="posts_button-open">
                     <div class=" posts_vejamais">
                         <img class="posts_vejamais_logo" src="/wp-content/uploads/2020/01/logo-branca.svg" />

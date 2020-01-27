@@ -1,6 +1,16 @@
 <?php
 
-// Child Theme Styles
+/**
+ * Ericson Scorsim Functions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package WordPress
+ * @subpackage Ericson_Scorsim
+ * @since 1.0.0
+ */
+
+/*Child Theme Styles*/
 
 function my_theme_enqueue_styles()
 {
@@ -21,16 +31,21 @@ function my_theme_enqueue_styles()
 add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
 
 /* Remove inline styles*/
-add_action( 'wp_enqueue_scripts', function() {
-	$styles = wp_styles();
-	$styles->add_data( 'twentytwenty-style', 'after', array() );
-}, 20 ); 
+add_action('wp_enqueue_scripts', function () {
+    $styles = wp_styles();
+    $styles->add_data('twentytwenty-style', 'after', array());
+}, 20);
 
 //Scripts
 function ericson_scorsim_scripts()
 {
+    wp_enqueue_script('jquery',  get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array(), '1.0.0', true);
     wp_enqueue_script('smooth-scrollbar',  get_stylesheet_directory_uri() . '/assets/js/smooth-scrollbar/smooth-scrollbar.js', array(), '1.0.0', true);
     wp_enqueue_script('main',  get_stylesheet_directory_uri() . '/main.js', array(), '1.0.0', true);
+    wp_enqueue_script('ajax',  get_stylesheet_directory_uri() . '/assets/js/ajax.js', array('jquery'), '1.0', true);
+    wp_localize_script('ajax', 'ajaxfilter', array(
+        'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php',
+    ));
 }
 add_action('wp_enqueue_scripts', 'ericson_scorsim_scripts');
 
@@ -295,8 +310,9 @@ function crunchify_show_post_thumbnail_column($crunchify_columns, $crunchify_id)
 
 /*Administrative Panel CSS*/
 
-function admin_css() {
-  echo '
+function admin_css()
+{
+    echo '
   <style>
  
   .editor-post-featured-image img, 
@@ -310,3 +326,37 @@ function admin_css() {
 }
 
 add_action('admin_head', 'admin_css');
+
+
+add_action( 'wp_ajax_ajax_filter', 'my_ajax_filter' );
+add_action( 'wp_ajax_ajax_filter', 'my_ajax_filter' );
+
+function my_ajax_filter() {
+   // Query Arguments
+
+   $category = $_POST['category'];
+
+   $args = array(
+    'category_name' => $category,
+);
+
+// The Query
+$ajaxposts = new WP_Query( $args );
+
+$response = '';
+
+// The Query
+if ( $ajaxposts->have_posts() ) {
+    while ( $ajaxposts->have_posts() ) {
+        $ajaxposts->the_post();
+        $response .= get_template_part('/template-parts/post-box');
+    }
+} else {
+    $response .= 'none';
+}
+
+echo $response;
+
+exit; // leave ajax call
+    die();
+}

@@ -2,7 +2,7 @@ const homepage = document.querySelector(".home");
 const postsContainer = document.querySelector('#posts-container');
 const infoContainer = document.querySelector('#info-container');
 const postModalAll = document.querySelectorAll('.posts_modal');
-const postBoxAll = document.querySelectorAll('.posts_box');
+const postBoxAll = document.querySelectorAll('.posts_box-modal');
 
 //Inject the modal url in the address bar
 const ChangeUrl = (title, url) => {
