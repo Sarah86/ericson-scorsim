@@ -43,7 +43,7 @@ function ericson_scorsim_scripts()
     wp_enqueue_script('smooth-scrollbar',  get_stylesheet_directory_uri() . '/assets/js/smooth-scrollbar/smooth-scrollbar.js', array(), '1.0.0', true);
     wp_enqueue_script('main',  get_stylesheet_directory_uri() . '/main.js', array(), '1.0.0', true);
     wp_enqueue_script('ajax',  get_stylesheet_directory_uri() . '/assets/js/ajax.js', array('jquery'), '1.0', true);
-    wp_localize_script('ajax', 'ajaxfilter', array(
+    wp_localize_script('ajax', 'ajaxSetting', array(
         'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php',
     ));
 }
@@ -352,7 +352,7 @@ if ( $ajaxposts->have_posts() ) {
         $response .= get_template_part('/template-parts/post-box');
     }
 } else {
-    $response .= 'none';
+    $response .= 'Tente pesquisar novamente procurando por outra palavra-chave ou navegue entre as categorias';
 }
 
 echo $response;
@@ -360,3 +360,36 @@ echo $response;
 exit; // leave ajax call
     die();
 }
+
+add_action( 'wp_ajax_ajax_search', 'my_ajax_search' );
+add_action( 'wp_ajax_ajax_search', 'my_ajax_search' );
+
+function my_ajax_search() {
+    // Query Arguments
+ 
+    $search = $_POST['search'];
+ 
+    $args = array(
+     's' => $search
+ );
+ 
+ // The Query
+ $ajaxposts = new WP_Query( $args );
+ 
+ $response = '';
+ 
+ // The Query
+ if ( $ajaxposts->have_posts() ) {
+     while ( $ajaxposts->have_posts() ) {
+         $ajaxposts->the_post();
+         $response .= get_template_part('/template-parts/post-box');
+     }
+ } else {
+     $response .= 'Tente pesquisar novamente procurando por outra palavra-chave ou navegue entre as categorias';
+ }
+ 
+ echo $response;
+ 
+ exit; // leave ajax call
+     die();
+ }
