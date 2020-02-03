@@ -24,7 +24,7 @@ get_header();
             while (have_posts()) {
                 the_post();
 
-                get_template_part('template-parts/content-modal', get_post_type());
+                get_template_part('template-parts/content-no-header', get_post_type());
             }
         }
 

@@ -44,7 +44,8 @@ const addOpeningClass = () => {
         box.addEventListener('click', () => {
             box.querySelector('.posts_modal').classList.add('active', 'animated', 'zoomIn', 'fast');
             box.classList.remove('animated', 'fadeIn', 'delay-2s');
-            box.querySelector('.entry-content').classList.add('animated', 'fadeIn', 'delay-1s');
+            box.querySelector('.post_content').classList.add('animated', 'fadeIn', 'delay-1s');
+            box.querySelector('.post_image') ? box.querySelector('.post_image').classList.add('animated', 'fadeIn', 'delay-2s') : null;
             setTimeout(() => {
              box.querySelector('.posts_modal').classList.remove('fast');
             }, 500);
@@ -74,7 +75,8 @@ const removeActiveClass = () => {
     activePostModal.classList.add('animated', 'zoomOut', 'faster');
     setTimeout(() => {
         activePostModal.classList.remove('animated', 'zoomOut', 'faster', 'zoomIn', 'active');
-        activePostModal.querySelector('.entry-content').classList.remove('animated', 'fadeIn', 'delay-1s');
+        activePostModal.querySelector('.post_content').classList.remove('animated', 'fadeIn', 'delay-1s');
+        activePostModal.querySelector('.post_image') ? activePostModal.querySelector('.post_image').classList.remove('animated', 'fadeIn', 'delay-2s') : null;
     }, 500);
 }
 

@@ -17,7 +17,7 @@ if ( has_post_thumbnail() && ! post_password_required() ) {
 	}
 	?>
 
-	<figure class="featured-media-modal">
+	<figure class="featured-media-modal full-width-mobile">
 
 		<div class="featured-media-modal_inner">
 

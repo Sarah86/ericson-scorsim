@@ -10,16 +10,21 @@
 ?>
 
 
-<div class="">
-    <ul id="posts-filter">
-        <form id="ajax-search">
-        <input type="text" value="" placeholder="Pesquisar_">
-        <button type="submit"></button>
+<div class="novidades post_content">
+    <div class="novidades_ajax-form">
+        <form id="ajax-search" class="ajax-search_form">
+            <input type="text" value="" placeholder="Pesquisar_" class="ajax-search_input">
+            <button type="submit" class="ajax-search_button"><i class="fab fa-sistrix"></i></button>
         </form>
-        <li><a href="#" value="novidades">Novidades</a></li>
-        <li><a href="#" value="noticias">Noticias</a></li>
-        <li><a href="#" value="artigos">Artigos</a></li>
-    </ul>
+        <div id="ajax-filter" class="ajax-filter_container">
+            <button href="#" value="artigos">Artigos</button>
+            <button href="#" value="novidades">Novidades</button>
+            <button href="#" value="noticias">Noticias</button>
+          
+        </div>
+    </div>
+
+
     <div class="posts posts-novidades" id="posts-filter_results"></div>
 
 </div>

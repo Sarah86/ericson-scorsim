@@ -16,14 +16,14 @@ get_header();
             // Novidades
             $posts = new WP_Query(array(
                 'category' => pll_get_term(19) && pll_get_term(26) && pll_get_term(28),
-                'posts_per_page' => 6,
+                'posts_per_page' => 3,
             ));
             ?>
 
             <?php if ($posts->have_posts()) : ?>
                 <?php while ($posts->have_posts()) : $posts->the_post(); ?>
 
-                    <div class="posts_box posts_box-modal animated fadeIn delay-1s" to="<?php esc_url(the_permalink()) ?>">
+                    <div class="posts_box posts_box-modal animated fadeIn" to="<?php esc_url(the_permalink()) ?>">
                         <div role="button" class="posts_button-open">
                             <h2 class="posts_titulo">
                                 <?php

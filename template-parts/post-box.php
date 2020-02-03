@@ -13,7 +13,7 @@
             <h2 class="posts_titulo">
                 <?php
                 $text = get_the_title($posts->post);
-                echo wp_trim_words($text, 15, '..');
+                echo wp_trim_words($text, 10, '..');
                 ?>
             </h2>
             <?php if (has_post_thumbnail()) : ?>

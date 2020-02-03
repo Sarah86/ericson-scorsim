@@ -25,6 +25,7 @@ function my_theme_enqueue_styles()
         array($parent_style),
         wp_get_theme()->get('Version')
     );
+    wp_enqueue_style('bootstrapcss', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css');
     wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/fonts/fontawesome-free/css/all.css');
 }
 
@@ -42,9 +43,11 @@ function ericson_scorsim_scripts()
     wp_enqueue_script('jquery',  get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array(), '1.0.0', true);
     wp_enqueue_script('smooth-scrollbar',  get_stylesheet_directory_uri() . '/assets/js/smooth-scrollbar/smooth-scrollbar.js', array(), '1.0.0', true);
     wp_enqueue_script('main',  get_stylesheet_directory_uri() . '/main.js', array(), '1.0.0', true);
+    wp_enqueue_script('jquery-scroll',  get_stylesheet_directory_uri() . '/assets/js/jquery.scrollintoview.js', array('jquery'), '1.0', true);
+    wp_enqueue_script('bootstrap',  get_stylesheet_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '1.0', true);
     wp_enqueue_script('ajax',  get_stylesheet_directory_uri() . '/assets/js/ajax.js', array('jquery'), '1.0', true);
     wp_localize_script('ajax', 'ajaxSetting', array(
-        'ajaxurl' => site_url() . '/wp-admin/admin-ajax.php',
+        'ajaxurl' => admin_url( 'admin-ajax.php' ),
     ));
 }
 add_action('wp_enqueue_scripts', 'ericson_scorsim_scripts');
@@ -126,6 +129,45 @@ add_filter('upload_mimes', 'cc_mime_types');
 
 function mytheme_customize_register($wp_customize)
 {
+
+    // Mailchimp
+
+    $wp_customize->add_section('mailchimp_section', array(
+        'title'      => __('Mailchimp', 'twentytwentychild'),
+        'priority'   => 30,
+    ));
+
+    $wp_customize->add_setting('mailchimp_user', array(
+        'type'           => 'theme_mod',
+    ));
+    $wp_customize->add_control(
+        new WP_Customize_Control(
+            $wp_customize,
+            'mailchimp_user',
+            array(
+                'label'      => __('Mailchimp - User ID', 'twentytwentychild'),
+                'section'    => 'mailchimp_section',
+                'settings'   => 'mailchimp_user',
+                'priority'   => 1
+            )
+        )
+    );
+
+    $wp_customize->add_setting('mailchimp_audience', array(
+        'type'           => 'theme_mod',
+    ));
+    $wp_customize->add_control(
+        new WP_Customize_Control(
+            $wp_customize,
+            'mailchimp_audience',
+            array(
+                'label'      => __('Mailchimp - Audience ID', 'twentytwentychild'),
+                'section'    => 'mailchimp_section',
+                'settings'   => 'mailchimp_audience',
+                'priority'   => 1
+            )
+        )
+    );
 
     // Contact Section
 
@@ -329,7 +371,7 @@ add_action('admin_head', 'admin_css');
 
 
 add_action( 'wp_ajax_ajax_filter', 'my_ajax_filter' );
-add_action( 'wp_ajax_ajax_filter', 'my_ajax_filter' );
+add_action( 'wp_ajax_ajax_nopriv_filter', 'my_ajax_filter' );
 
 function my_ajax_filter() {
    // Query Arguments
@@ -362,7 +404,7 @@ exit; // leave ajax call
 }
 
 add_action( 'wp_ajax_ajax_search', 'my_ajax_search' );
-add_action( 'wp_ajax_ajax_search', 'my_ajax_search' );
+add_action( 'wp_ajax_nopriv_ajax_search', 'my_ajax_search' );
 
 function my_ajax_search() {
     // Query Arguments
@@ -370,7 +412,8 @@ function my_ajax_search() {
     $search = $_POST['search'];
  
     $args = array(
-     's' => $search
+     's' => $search,
+     'post_type' => 'post'
  );
  
  // The Query
@@ -393,3 +436,33 @@ function my_ajax_search() {
  exit; // leave ajax call
      die();
  }
+
+ /*Mime Type incluiding webp*/
+ add_filter('upload_mimes', 'add_custom_mime_types');
+
+function add_custom_mime_types($mimes) {
+    return array_merge($mimes, array (
+        'webp' => 'image/webp'
+    ));
+}
+
+//Lazy Blocks
+
+if ( function_exists( 'lazyblocks' ) ) :
+
+    lazyblocks()->add_template( array(
+        'id' => 1835,
+        'title' => 'Páginas',
+        'data' => array(
+            'post_type' => 'page',
+            'post_label' => 'Páginas',
+            'template_lock' => '',
+            'blocks' => array(
+                array(
+                    'name' => 'block-lab/accordion',
+                ),
+            ),
+        ),
+    ) );
+    
+endif;

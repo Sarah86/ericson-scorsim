@@ -1,8 +1,14 @@
 (function($) {
+
+
+
+    var filterButtons = $('#ajax-filter button');
+    var results = $( '#posts-filter_results' );
     
-	$(document).on( 'click', '#posts-filter li a', function( event ) {
+	$(document).on( 'click', '#ajax-filter button', function( event ) {
         var button = $(this);
         var categoryValue = button.attr("value");
+        filterButtons.removeClass('active');
         event.preventDefault();
         $.ajax({
             url: ajaxSetting.ajaxurl,
@@ -13,17 +19,25 @@
                 category: categoryValue,
             },
             beforeSend : function () {
-                $( '#posts-filter_results' ).text('Loading...'); 
+                results.text('Carregando...'); 
 			},
             success: function( response ) {
-                 $( '#posts-filter_results' ).html( response ); 
+                button.addClass('active');
+                results.html( response );
+                setTimeout(function(){
+                    $('.posts').scrollintoview({
+                        duration: 1000,
+                        direction: "vertical"
+                    });
+                },500);
             }
-        })  
+        });
     })
     
     $(document).on( 'click', '#ajax-search button', function( event ) {
         var searchValue = $('#ajax-search input').val();
         event.preventDefault();
+        filterButtons.removeClass('active');
         $.ajax({
             url: ajaxSetting.ajaxurl,
             type: 'POST',
@@ -33,10 +47,10 @@
                 search: searchValue
             },
             beforeSend : function () {
-                $( '#posts-filter_results' ).text('Loading...'); 
+                results.text('Carregando...'); 
 			},
             success: function( response ) {
-                 $( '#posts-filter_results' ).html( response ); 
+                 results.html( response ); 
             }
         })  
     })
