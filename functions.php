@@ -327,6 +327,20 @@ show_admin_bar(false);
 //     }
 // }
 
+/* Adds the favicon code snippet from RealFaviconGenerator */
+add_action('wp_head', 'add_favicon');
+    function add_favicon(){
+    ?>
+        <meta name="msapplication-confg" content="<?php echo get_stylesheet_directory_uri() ?>/assets/favicons/browserconfg.xml" />
+        <link rel="manifest" href="<?php echo get_stylesheet_directory_uri() ?>/assets/favicons/manifest.json">
+        <link rel="icon" type="image/x-icon" href="<?php echo get_stylesheet_directory_uri() ?>/assets/favicons/favicon.ico">
+        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_stylesheet_directory_uri() ?>/assets/favicons/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="48x48" href="<?php echo get_stylesheet_directory_uri() ?>/assets/favicons/favicon-48x48.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_stylesheet_directory_uri() ?>/assets/favicons/favicon-32x32.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_stylesheet_directory_uri() ?>/assets/favicons/apple-touch-icon-180x180.png">      
+    <?php
+    };
+
 /*Administrative Panel CSS*/
 
 function admin_css()
