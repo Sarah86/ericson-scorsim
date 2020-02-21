@@ -6,11 +6,11 @@ const postBoxAll = document.querySelectorAll('.posts_box-modal');
 
 //Inject the modal url in the address bar
 const ChangeUrl = (title, url) => {
-    var obj = { 
-        Title: title, 
-        Url: url 
-      };
-      
+    var obj = {
+        Title: title,
+        Url: url
+    };
+
     if (history.pushState != "undefined") {
         history.pushState(obj, obj.Title, obj.Url)
     }
@@ -20,8 +20,8 @@ const ChangeUrl = (title, url) => {
 const changeOpacityWhenScroll = (opacityElement, scrolledElement) => {
     scrolledElement.addEventListener('scroll', () => {
         const scrollPositionX = scrolledElement.scrollLeft;
-        const changedOpacityRelativeToX = "opacity:" + (1 - scrollPositionX/150);
-  
+        const changedOpacityRelativeToX = "opacity:" + (1 - scrollPositionX / 150);
+
         opacityElement.setAttribute("style", changedOpacityRelativeToX);
     })
 }
@@ -30,11 +30,11 @@ const changeOpacityWhenScroll = (opacityElement, scrolledElement) => {
 const pressingDownScrollToRight = (element) => {
     if (homepage) {
         document.addEventListener('keydown', (event) => {
-            (event.key == "ArrowDown" || event.key == "ArrowRight" ) ? element.scrollBy(50, 0) 
-            : (event.key == "ArrowUp" || event.key == "ArrowLeft" ) ? element.scrollBy(-50, 0) 
-            : event
+            (event.key == "ArrowDown" || event.key == "ArrowRight") ? element.scrollBy(50, 0)
+                : (event.key == "ArrowUp" || event.key == "ArrowLeft") ? element.scrollBy(-50, 0)
+                    : event
         });
-    }    
+    }
 }
 
 
@@ -47,7 +47,7 @@ const addOpeningClass = () => {
             box.querySelector('.post_content').classList.add('animated', 'fadeIn', 'delay-1s');
             box.querySelector('.post_image') ? box.querySelector('.post_image').classList.add('animated', 'fadeIn', 'delay-2s') : null;
             setTimeout(() => {
-             box.querySelector('.posts_modal').classList.remove('fast');
+                box.querySelector('.posts_modal').classList.remove('fast');
             }, 500);
         })
     })
@@ -84,12 +84,12 @@ const removeActiveClass = () => {
 const closeModalWhenPressBack = () => {
     window.addEventListener('popstate', () => {
         removeActiveClass();
-    }, false)  
+    }, false)
 }
 
- //When press the modal close button, change the url to the previous one
- const pressCloseHistoryBack = () => {
-   postModalAll.forEach(modal => {
+//When press the modal close button, change the url to the previous one
+const pressCloseHistoryBack = () => {
+    postModalAll.forEach(modal => {
         const modalCloseButton = modal.querySelector('.posts_button-close');
         modalCloseButton.addEventListener('click', () => {
             removeActiveClass();
@@ -98,11 +98,22 @@ const closeModalWhenPressBack = () => {
     });
 }
 
-(function() {
+// Newsletter Mailchimp
+(function($) { 
+    window.fnames = new Array(); 
+    window.ftypes = new Array(); 
+    fnames[0] = 'EMAIL'; 
+    ftypes[0] = 'email'; 
+    } (jQuery)); 
+    
+    var $mcj = jQuery.noConflict(true);
+
+(function () {
     addOpeningClass();
     injectUrl();
     pressingDownScrollToRight(postsContainer);
     changeOpacityWhenScroll(infoContainer, postsContainer);
     closeModalWhenPressBack();
     pressCloseHistoryBack();
- })();
+})();
+

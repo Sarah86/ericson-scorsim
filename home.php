@@ -31,11 +31,17 @@ get_header();
                                 echo wp_trim_words($text, 15, '..');
                                 ?>
                             </h2>
-                            <?php if (has_post_thumbnail()) : ?>
-                                <div class="posts_thumbnail">
-                                    <?php the_post_thumbnail('medium_large', '') ?>
-                                </div>
-                            <?php endif; ?>
+                            <?php if 
+                                ( has_post_thumbnail() ) {
+                                echo '<div class="posts_thumbnail">';
+                                    the_post_thumbnail('medium_large', '');
+                                echo '</div>';
+                                } else {
+                                echo '<div class="posts_thumbnail">';
+                                echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/basic-thumb.png" />';
+                                echo '</div>';
+                                }
+                            ?>
                         </div>
                         <div class="posts_modal posts_modal-<?php the_ID(); ?>">
                             <?php get_template_part( '/template-parts/modal_button', 'close' ) ?>
@@ -59,7 +65,7 @@ get_header();
                     <div class=" posts_vejamais">
                         <img class="posts_vejamais_logo" src="/wp-content/uploads/2020/01/logo-branca.svg" />
                         <h2 class="posts_vejamais_titulo">
-                            <?php _e('ver todas as novidades ', 'twentytwentychild') ?>
+                            <?php _e('Ver todas as novidades', 'ericsonscorsim') ?>
                         </h2>
                     </div>
                 </div>
@@ -73,7 +79,6 @@ get_header();
 
         </div>
 
-        <?php get_template_part('template-parts/pagination'); ?>
 
 </main><!-- #site-content -->
 

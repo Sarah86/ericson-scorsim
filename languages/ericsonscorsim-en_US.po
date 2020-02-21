@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ericson Scorsim\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-06 11:31+0000\n"
+"PO-Revision-Date: 2020-02-20 20:20+0100\n"
+"Last-Translator: sarah <sarah.goncalves@gmail.com>\n"
+"Language-Team: English (United States)\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2\n"
+
+#: home.php:62
+msgid "Ver todas as novidades"
+msgstr "Check out all the news"
+
+#: searchform.php:25
+msgid "Pesquisar"
+msgstr "Search"
+
+#: functions.php:374
+msgid "Tente pesquisar novamente procurando por outra palavra-chave ou navegue entre as categorias"
+msgstr "Try searching again for another keyword or browsing using the categories"
+
+#: template-parts/content-modal-novidades.php:16
+msgid "pesquisar"
+msgstr "search"
+
+#: template-parts/content-modal-novidades.php:20
+msgid "artigos"
+msgstr "articles"
+
+#: template-parts/content-modal-novidades.php:21
+msgid "novidades"
+msgstr "updates"
+
+#: template-parts/content-modal-novidades.php:22
+msgid "notícias"
+msgstr "news"
+
+#: template-parts/newsletter.php:3
+msgid "Assine nossa newsletter_"
+msgstr "Subscribe to our newsletter_"

@@ -10,6 +10,7 @@
 <?php
 $obj_id = get_queried_object_id();
 $current_url = get_permalink($obj_id);
+// talvez precise usar  home_url('') . 
 ?>
 
 <div id="fb-root"></div>
@@ -38,7 +39,7 @@ window.twttr = (function(d, s, id) {
 </script>
 
 <div class="share-bar">
-    <span><?php _e('compartilhar:', 'twentytwentychild'); ?></span>
+    <span><?php _e('compartilhar:', 'twentytwenty'); ?></span>
     <ul class="share-bar_list">
         <li>
             <a class="share-bar_button" 
@@ -61,7 +62,7 @@ window.twttr = (function(d, s, id) {
         </li>
         <li>
             <a class="share-bar_button"
-                href="mailto:contato@ericsonscorsim.com.br" target="_blank">
+                href="mailto: ?Subject=Ericson%20Scorsim&Body=<?php echo $current_url ?>"  target="_blank">
                 email
             </a>
         </li>

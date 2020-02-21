@@ -118,18 +118,7 @@
             </div><!-- .menu-top -->
 
             <div class="menu-modal_bottom">
-                <div class="newsletter">
-                    <form class="newsletter_input-group" action="https://netlify.us4.list-manage.com/subscribe/post?u=<?php echo get_theme_mod( 'mailchimp_user' ); ?>&id=<?php echo get_theme_mod( 'mailchimp_audience' ); ?>" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                        <input class="newsletter_input-group-field" type="email" placeholder="<?php _e('Assine nossa newsletter_', 'twentytwentychild'); ?>" required name="EMAIL" id="mailchimp_email">
-                        <div id="mce-responses" class="clear">
-                            <div class="response" id="mce-error-response" style="display:none"></div>
-                            <div class="response" id="mce-success-response" style="display:none"></div>
-                        </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                        <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="newsletter_button"><i class="fas fa-angle-right"></i></button>
-                    </form>
-                </div>
-                <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-<!--End mc_embed_signup-->
+                <?php get_template_part('template-parts/newsletter'); ?>
 
                 <ul class="menu-modal_language">
                     <?php pll_the_languages(); ?>

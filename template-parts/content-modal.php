@@ -35,13 +35,21 @@
             </div><!-- .entry-content -->
         </div><!-- .post-inner -->
     </div> 
-    <?php if (has_post_thumbnail( $post->ID ) ): ?> 
-    <div class="post_image">
-        <?php
-        get_template_part('template-parts/featured-image', 'modal');
-        ?>
-    </div>
-    <?php endif ?>
+        <?php if 
+        ( has_post_thumbnail( $post->ID ) ) {
+        echo '<div class="post_image">';
+            get_template_part('template-parts/featured-image', 'modal');
+        echo '</div>';
+        } else {
+        echo '<div class="post_image">';
+            echo '<div class="featured-media-modal full-width-mobile">';
+                echo '<div class="featured-media-modal_inner">';
+                    echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/basic-thumb.png" />';
+                echo '</div>';
+            echo '</div>';
+        echo '</div>';
+        }
+    ?>
 
 
 </article><!-- .post -->

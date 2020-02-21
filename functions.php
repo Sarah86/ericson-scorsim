@@ -10,7 +10,9 @@
  * @since 1.0.0
  */
 
+
 /*Child Theme Styles*/
+
 
 function my_theme_enqueue_styles()
 {
@@ -40,15 +42,16 @@ add_action('wp_enqueue_scripts', function () {
 //Scripts
 function ericson_scorsim_scripts()
 {
-    wp_enqueue_script('jquery',  get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array(), '1.0.0', true);
+    //wp_enqueue_script('jquery',  get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array(), '1.0.0', true);
     wp_enqueue_script('smooth-scrollbar',  get_stylesheet_directory_uri() . '/assets/js/smooth-scrollbar/smooth-scrollbar.js', array(), '1.0.0', true);
+    wp_enqueue_script('jquery-scroll',  get_stylesheet_directory_uri() . '/assets/js/jquery.scrollintoview.js', array( 'jquery' ), '1.0', true );
+    wp_enqueue_script('bootstrap',  get_stylesheet_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ) );
+    wp_enqueue_script('ajax',  get_stylesheet_directory_uri() . '/assets/js/ajax.js', array( 'jquery' ), '1.0', true );
+    wp_enqueue_script('mailchimp',  '//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js', array( 'jquery' ), '1.0', true);
     wp_enqueue_script('main',  get_stylesheet_directory_uri() . '/main.js', array(), '1.0.0', true);
-    wp_enqueue_script('jquery-scroll',  get_stylesheet_directory_uri() . '/assets/js/jquery.scrollintoview.js', array('jquery'), '1.0', true);
-    wp_enqueue_script('bootstrap',  get_stylesheet_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '1.0', true);
-    wp_enqueue_script('ajax',  get_stylesheet_directory_uri() . '/assets/js/ajax.js', array('jquery'), '1.0', true);
-    wp_localize_script('ajax', 'ajaxSetting', array(
-        'ajaxurl' => admin_url( 'admin-ajax.php' ),
-    ));
+
+    
+    wp_localize_script('ajax', 'ajaxSetting', array('ajaxurl' => admin_url('/admin-ajax.php')));
 }
 add_action('wp_enqueue_scripts', 'ericson_scorsim_scripts');
 
@@ -107,9 +110,9 @@ function twentytwenty_sidebar_registration_child_theme()
         array_merge(
             $shared_args,
             array(
-                'name'        => __('Rodapé - 3', 'twentytwentychild'),
+                'name'        => __('Rodapé - 3', 'twentytwenty'),
                 'id'          => 'sidebar-home',
-                'description' => __('Widgets que vão aparecer na Home.', 'twentytwentychild'),
+                'description' => __('Widgets que vão aparecer na Home.', 'twentytwenty'),
             )
         )
     );
@@ -133,7 +136,7 @@ function mytheme_customize_register($wp_customize)
     // Mailchimp
 
     $wp_customize->add_section('mailchimp_section', array(
-        'title'      => __('Mailchimp', 'twentytwentychild'),
+        'title'      => __('Mailchimp', 'twentytwenty'),
         'priority'   => 30,
     ));
 
@@ -145,7 +148,7 @@ function mytheme_customize_register($wp_customize)
             $wp_customize,
             'mailchimp_user',
             array(
-                'label'      => __('Mailchimp - User ID', 'twentytwentychild'),
+                'label'      => __('Mailchimp - User ID', 'twentytwenty'),
                 'section'    => 'mailchimp_section',
                 'settings'   => 'mailchimp_user',
                 'priority'   => 1
@@ -161,7 +164,7 @@ function mytheme_customize_register($wp_customize)
             $wp_customize,
             'mailchimp_audience',
             array(
-                'label'      => __('Mailchimp - Audience ID', 'twentytwentychild'),
+                'label'      => __('Mailchimp - Audience ID', 'twentytwenty'),
                 'section'    => 'mailchimp_section',
                 'settings'   => 'mailchimp_audience',
                 'priority'   => 1
@@ -172,7 +175,7 @@ function mytheme_customize_register($wp_customize)
     // Contact Section
 
     $wp_customize->add_section('contact_section', array(
-        'title'      => __('Contato', 'twentytwentychild'),
+        'title'      => __('Contato', 'twentytwenty'),
         'priority'   => 30,
     ));
 
@@ -182,7 +185,7 @@ function mytheme_customize_register($wp_customize)
             $wp_customize,
             'cidade_pais_customize',
             array(
-                'label'      => __('Cidade e País', 'twentytwentychild'),
+                'label'      => __('Cidade e País', 'twentytwenty'),
                 'section'    => 'contact_section',
                 'settings'   => 'cidade_pais',
                 'priority'   => 1
@@ -197,7 +200,7 @@ function mytheme_customize_register($wp_customize)
             $wp_customize,
             'endereco_customize',
             array(
-                'label'      => __('Endereço', 'twentytwentychild'),
+                'label'      => __('Endereço', 'twentytwenty'),
                 'section'    => 'contact_section',
                 'settings'   => 'endereco',
                 'priority'   => 1
@@ -211,7 +214,7 @@ function mytheme_customize_register($wp_customize)
             $wp_customize,
             'fone_customize',
             array(
-                'label'      => __('Fone', 'twentytwentychild'),
+                'label'      => __('Fone', 'twentytwenty'),
                 'section'    => 'contact_section',
                 'settings'   => 'fone',
                 'priority'   => 1
@@ -224,7 +227,7 @@ function mytheme_customize_register($wp_customize)
             $wp_customize,
             'email_customize',
             array(
-                'label'      => __('E-mail', 'twentytwentychild'),
+                'label'      => __('E-mail', 'twentytwenty'),
                 'section'    => 'contact_section',
                 'settings'   => 'email',
                 'priority'   => 1
@@ -233,58 +236,32 @@ function mytheme_customize_register($wp_customize)
     );
     // Social Section
     $wp_customize->add_section('social_section', array(
-        'title'      => __('Social', 'twentytwentychild'),
+        'title'      => __('Social', 'twentytwenty'),
         'priority'   => 30,
     ));
 
-    $wp_customize->add_setting('social_1-logo', array());
-    $wp_customize->add_control(
-        new WP_Customize_Media_Control(
-            $wp_customize,
-            'social_1-logo_customize',
-            array(
-                'label'      => __('Rede Social 1 - Logo', 'twentytwentychild'),
-                'section'    => 'social_section',
-                'settings'   => 'social_1-logo',
-                'mime_type' => 'image/svg+xml',
-                'priority'   => 1
-            )
-        )
-    );
     $wp_customize->add_setting('social_1-link', array());
     $wp_customize->add_control(
         new WP_Customize_Control(
             $wp_customize,
             'social_1-link_customize',
             array(
-                'label'      => __('Rede Social 1 - Link', 'twentytwentychild'),
+                'label'      => __('LinkedIn - Link', 'twentytwenty'),
                 'section'    => 'social_section',
                 'settings'   => 'social_1-link',
                 'priority'   => 1
             )
         )
     );
-    $wp_customize->add_setting('social_2-logo', array());
-    $wp_customize->add_control(
-        new WP_Customize_Media_Control(
-            $wp_customize,
-            'social_2-logo_customize',
-            array(
-                'label'      => __('Rede Social 2 - Logo', 'twentytwentychild'),
-                'section'    => 'social_section',
-                'settings'   => 'social_2-logo',
-                'mime_type' => 'image/svg+xml',
-                'priority'   => 1
-            )
-        )
-    );
+
+
     $wp_customize->add_setting('social_2-link', array());
     $wp_customize->add_control(
         new WP_Customize_Control(
             $wp_customize,
             'social_2-link_customize',
             array(
-                'label'      => __('Rede Social 2 - Link', 'twentytwentychild'),
+                'label'      => __('Academia - Link', 'twentytwenty'),
                 'section'    => 'social_section',
                 'settings'   => 'social_2-link',
                 'priority'   => 1
@@ -293,7 +270,7 @@ function mytheme_customize_register($wp_customize)
     );
     // Home
     $wp_customize->add_section('home_section', array(
-        'title'      => __('Home', 'twentytwentychild'),
+        'title'      => __('Home', 'twentytwenty'),
         'priority'   => 30,
     ));
 
@@ -303,7 +280,7 @@ function mytheme_customize_register($wp_customize)
             $wp_customize,
             'perfil_image_customize',
             array(
-                'label'      => __('Perfil - Imagem', 'twentytwentychild'),
+                'label'      => __('Perfil - Imagem', 'twentytwenty'),
                 'section'    => 'home_section',
                 'settings'   => 'perfil_image',
                 'mime_type' => 'image',
@@ -318,37 +295,37 @@ add_action('customize_register', 'mytheme_customize_register');
 
 show_admin_bar(false);
 
-/*Show featured image in the administrative panel*/
+// /*Show featured image in the administrative panel*/
 
-add_image_size('crunchify-admin-post-featured-image', 120, 120, false);
+// add_image_size('crunchify-admin-post-featured-image', 120, 120, false);
 
-/* Add the posts and pages columns filter. They can both use the same function.*/
-add_filter('manage_posts_columns', 'crunchify_add_post_admin_thumbnail_column', 2);
-add_filter('manage_pages_columns', 'crunchify_add_post_admin_thumbnail_column', 2);
+// /* Add the posts and pages columns filter. They can both use the same function.*/
+// add_filter('manage_posts_columns', 'crunchify_add_post_admin_thumbnail_column', 2);
+// add_filter('manage_pages_columns', 'crunchify_add_post_admin_thumbnail_column', 2);
 
-/* Add the column */
-function crunchify_add_post_admin_thumbnail_column($crunchify_columns)
-{
-    $crunchify_columns['crunchify_thumb'] = __('Featured Image');
-    return $crunchify_columns;
-}
+// /* Add the column */
+// function crunchify_add_post_admin_thumbnail_column($crunchify_columns)
+// {
+//     $crunchify_columns['crunchify_thumb'] = __('Featured Image');
+//     return $crunchify_columns;
+// }
 
-// Let's manage Post and Page Admin Panel Columns
-add_action('manage_posts_custom_column', 'crunchify_show_post_thumbnail_column', 5, 2);
-add_action('manage_pages_custom_column', 'crunchify_show_post_thumbnail_column', 5, 2);
+// // Let's manage Post and Page Admin Panel Columns
+// add_action('manage_posts_custom_column', 'crunchify_show_post_thumbnail_column', 5, 2);
+// add_action('manage_pages_custom_column', 'crunchify_show_post_thumbnail_column', 5, 2);
 
-// Here we are grabbing featured-thumbnail size post thumbnail and displaying it
-function crunchify_show_post_thumbnail_column($crunchify_columns, $crunchify_id)
-{
-    switch ($crunchify_columns) {
-        case 'crunchify_thumb':
-            if (function_exists('the_post_thumbnail'))
-                echo the_post_thumbnail('crunchify-admin-post-featured-image');
-            else
-                echo 'hmm... your theme doesn\'t support featured image...';
-            break;
-    }
-}
+// // Here we are grabbing featured-thumbnail size post thumbnail and displaying it
+// function crunchify_show_post_thumbnail_column($crunchify_columns, $crunchify_id)
+// {
+//     switch ($crunchify_columns) {
+//         case 'crunchify_thumb':
+//             if (function_exists('the_post_thumbnail'))
+//                 echo the_post_thumbnail('crunchify-admin-post-featured-image');
+//             else
+//                 echo 'hmm... your theme doesn\'t support featured image...';
+//             break;
+//     }
+// }
 
 /*Administrative Panel CSS*/
 
@@ -371,7 +348,7 @@ add_action('admin_head', 'admin_css');
 
 
 add_action( 'wp_ajax_ajax_filter', 'my_ajax_filter' );
-add_action( 'wp_ajax_ajax_nopriv_filter', 'my_ajax_filter' );
+add_action( 'wp_ajax_nopriv_ajax_filter', 'my_ajax_filter' );
 
 function my_ajax_filter() {
    // Query Arguments
@@ -394,7 +371,7 @@ if ( $ajaxposts->have_posts() ) {
         $response .= get_template_part('/template-parts/post-box');
     }
 } else {
-    $response .= 'Tente pesquisar novamente procurando por outra palavra-chave ou navegue entre as categorias';
+    $response .= _e('Tente pesquisar novamente procurando por outra palavra-chave ou navegue entre as categorias', 'ericsonscorsim');
 }
 
 echo $response;
@@ -466,3 +443,5 @@ if ( function_exists( 'lazyblocks' ) ) :
     ) );
     
 endif;
+
+//define( 'WP_DEBUG', true );

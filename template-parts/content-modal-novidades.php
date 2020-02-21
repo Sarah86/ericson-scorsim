@@ -13,13 +13,13 @@
 <div class="novidades post_content">
     <div class="novidades_ajax-form">
         <form id="ajax-search" class="ajax-search_form">
-            <input type="text" value="" placeholder="Pesquisar_" class="ajax-search_input">
+            <input type="text" value="" placeholder="<?php _e('pesquisar', 'ericsonscorsim') ?>_" class="ajax-search_input">
             <button type="submit" class="ajax-search_button"><i class="fab fa-sistrix"></i></button>
         </form>
         <div id="ajax-filter" class="ajax-filter_container">
-            <button href="#" value="artigos">Artigos</button>
-            <button href="#" value="novidades">Novidades</button>
-            <button href="#" value="noticias">Noticias</button>
+            <button href="#" value="<?php _e('artigos', 'ericsonscorsim') ?>"><?php _e('artigos', 'ericsonscorsim') ?></button>
+            <button href="#" value="<?php _e('novidades', 'ericsonscorsim') ?>"><?php _e('novidades', 'ericsonscorsim') ?></button>
+            <button href="#" value="<?php _e('notícias', 'ericsonscorsim') ?>"><?php _e('notícias', 'ericsonscorsim') ?></button>
           
         </div>
     </div>
