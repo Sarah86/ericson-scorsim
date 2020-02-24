@@ -605,6 +605,7 @@ header#site-header {
   -o-object-fit: cover;
   object-fit: cover;
   height: 100%;
+  width: 100%;
 }
 
 .posts_modal {
@@ -1671,8 +1672,13 @@ button.accordion_button[aria-expanded="true"] {
 
   .posts-novidades {
     padding-left: 0;
-    height: var(--post-max-height);
+    /* height: var(--post-max-height); */
   }
+
+   .posts-novidades{
+        height: 100%;
+        flex-wrap: wrap;
+  } 
 
   .posts-novidades .posts_box {
     -webkit-box-flex: unset;

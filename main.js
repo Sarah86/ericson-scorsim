@@ -29,10 +29,18 @@ const changeOpacityWhenScroll = (opacityElement, scrolledElement) => {
 //Change buttons and scroll behavior for homepage
 const pressingDownScrollToRight = (element) => {
     if (homepage) {
-        document.addEventListener('keydown', (event) => {
+        document.addEventListener('keydown', event => {
             (event.key == "ArrowDown" || event.key == "ArrowRight") ? element.scrollBy(50, 0)
                 : (event.key == "ArrowUp" || event.key == "ArrowLeft") ? element.scrollBy(-50, 0)
                     : event
+        });
+        document.addEventListener("wheel", event => {
+            const delta = Math.sign(event.deltaY);
+            delta === 1  
+            ?  element.scrollBy((delta + 50), 0)
+            :  delta === -1 
+            ?  element.scrollBy((delta + -50), 0)
+            : event
         });
     }
 }

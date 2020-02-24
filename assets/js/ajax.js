@@ -14,6 +14,7 @@
             url: ajaxSetting.ajaxurl,
             type: 'POST',
             dataType: "html",
+            async: true,
             data: {
                 action: 'ajax_filter',
                 category: categoryValue,
@@ -42,6 +43,7 @@
             url: ajaxSetting.ajaxurl,
             type: 'POST',
             dataType: "html",
+            async: true,
             data: {
                 action: 'ajax_search',
                 search: searchValue

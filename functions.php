@@ -371,6 +371,7 @@ function my_ajax_filter() {
 
    $args = array(
     'category_name' => $category,
+    'posts_per_page'   => -1
 );
 
 // The Query
@@ -404,7 +405,8 @@ function my_ajax_search() {
  
     $args = array(
      's' => $search,
-     'post_type' => 'post'
+     'post_type' => 'post',
+     'posts_per_page'   => -1,
  );
  
  // The Query
