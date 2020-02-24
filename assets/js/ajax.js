@@ -1,9 +1,8 @@
 (function($) {
 
-
-
     var filterButtons = $('#ajax-filter button');
     var results = $( '#posts-filter_results' );
+    var spinner = '<div class="lds-ripple"><div></div><div></div></div>';
     
 	$(document).on( 'click', '#ajax-filter button', function( event ) {
         var button = $(this);
@@ -20,7 +19,7 @@
                 category: categoryValue,
             },
             beforeSend : function () {
-                results.text('Carregando...'); 
+                results.html(spinner); 
 			},
             success: function( response ) {
                 button.addClass('active');
@@ -49,7 +48,7 @@
                 search: searchValue
             },
             beforeSend : function () {
-                results.text('Carregando...'); 
+                results.html(spinner); 
 			},
             success: function( response ) {
                  results.html( response ); 
