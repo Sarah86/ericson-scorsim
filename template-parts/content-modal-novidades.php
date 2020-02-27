@@ -25,6 +25,34 @@
     </div>
 
 
-    <div class="posts posts-novidades" id="posts-filter_results"></div>
+    <div class="posts posts-novidades" id="posts-filter_results">
+        
+    <?php
+            // Novidades
+            $posts = new WP_Query(array(
+                'category' => pll_get_term(19) && pll_get_term(26) && pll_get_term(28),
+                'posts_per_page' => -1
+            ));
+            
+            $response = '';
+
+            // The Query
+            if ( $posts->have_posts() ) {
+                while ( $posts->have_posts() ) {
+                    $posts->the_post();
+                    $response .= get_template_part('/template-parts/post-box');
+                }
+            } else {
+                $response .= _e('Tente pesquisar novamente procurando por outra palavra-chave ou navegue entre as categorias', 'ericsonscorsim');
+            }
+
+            echo $response;
+
+            wp_reset_postdata();
+               
+    ?>         
+
+                   
+    </div>
 
 </div>

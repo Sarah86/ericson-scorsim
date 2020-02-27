@@ -25,12 +25,18 @@ get_header();
 
                     <div class="posts_box posts_box-modal animated fadeIn" to="<?php esc_url(the_permalink()) ?>">
                         <div role="button" class="posts_button-open">
-                            <h2 class="posts_titulo">
-                                <?php
-                                $text = get_the_title($posts->post);
-                                echo wp_trim_words($text, 15, '..');
-                                ?>
-                            </h2>
+                        <h2 class="posts_titulo mobile-only">
+                            <?php
+                            $text = get_the_title($posts->post);
+                            echo $text;
+                            ?>
+                        </h2>
+                        <h2 class="posts_titulo desktop-only">
+                            <?php
+                            $text = get_the_title($posts->post);
+                            echo wp_trim_words($text, 25, '...');
+                            ?>
+                        </h2>
                             <?php if 
                                 ( has_post_thumbnail() ) {
                                 echo '<div class="posts_thumbnail">';
