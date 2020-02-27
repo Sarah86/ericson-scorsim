@@ -117,6 +117,9 @@ const pressCloseHistoryBack = () => {
     var $mcj = jQuery.noConflict(true);
 
 (function () {
+    cssVars({
+        // Options...
+      });
     addOpeningClass();
     injectUrl();
     pressingDownScrollToRight(postsContainer);

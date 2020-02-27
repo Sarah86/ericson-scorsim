@@ -49,7 +49,8 @@ function ericson_scorsim_scripts()
     wp_enqueue_script('ajax',  get_stylesheet_directory_uri() . '/assets/js/ajax.js', array( 'jquery' ), '1.0', true );
     wp_enqueue_script('mailchimp',  '//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js', array( 'jquery' ), '1.0', true);
     wp_enqueue_script('modernizr',  get_stylesheet_directory_uri() . '/assets/js/modernizr-custom.js', array(), '1.0', true);
-    wp_enqueue_script('polyfill',  'https://polyfill.io/v3/polyfill.min.js?features=document%2Csmoothscroll%2Cscroll%2CscrollBy%2CscrollIntoView%2CscrollX%2CscrollY%2Cwindow.scrollBy%2Cwindow.scroll%2C%7Ehtml5-elements', array(), '1.0', true);
+    wp_enqueue_script('polyfill',  'https://polyfill.io/v3/polyfill.min.js', array(), '1.0', true);
+    wp_enqueue_script('ponyfill',  'https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2', array(), '1.0', true);
     wp_enqueue_script('main',  get_stylesheet_directory_uri() . '/main.js', array(), '1.0.0', true);
 
     
